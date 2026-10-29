@@ -1,0 +1,267 @@
+body {
+    background-color: #0b0c10;
+    color: #c5c6c7;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+h1, h2 {
+    color: #66fcf1;
+    text-shadow: 0 0 15px rgba(102, 252, 241, 0.4);
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.game-container {
+    display: flex;
+    background: #1f2833;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+    border: 2px solid #45f3ff;
+    gap: 40px;
+    max-width: 850px;
+    width: 90%;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.avatar-preview {
+    width: 260px;
+    height: 260px;
+    background: #121821;
+    border-radius: 8px;
+    border: 2px solid #4e5e66;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 110px;
+    position: relative;
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.9);
+}
+
+.take-damage {
+    animation: shakeDamage 0.4s ease-in-out;
+    background: #5c1d1d !important;
+    border-color: #ff4a4a !important;
+}
+
+@keyframes shakeDamage {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-6px); }
+    80% { transform: translateX(4px); }
+    100% { transform: translateX(0); }
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex-grow: 1;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+label {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: #66fcf1;
+}
+
+select, input[type="text"] {
+    background: #0b0c10;
+    color: #fff;
+    border: 1px solid #45f3ff;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 15px;
+    outline: none;
+}
+
+.status-container {
+    background: #121821;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #45f3ff;
+}
+
+.status-title {
+    font-size: 12px;
+    color: #ffbd69;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+.status-val {
+    font-weight: bold;
+    color: #66fcf1;
+}
+
+.point-controls button {
+    background: #1f2833;
+    color: #66fcf1;
+    border: 1px solid #66fcf1;
+    padding: 6px 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.point-controls button:hover {
+    background: #66fcf1;
+    color: #0b0c10;
+    box-shadow: 0 0 8px #66fcf1;
+}
+
+.btn-action {
+    background: #1f2833;
+    color: #45f3ff;
+    border: 2px solid #45f3ff;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-action:hover {
+    background: #45f3ff;
+    color: #0b0c10;
+    box-shadow: 0 0 15px rgba(69, 243, 255, 0.6);
+}
+
+.box-interface {
+    max-width: 650px;
+    width: 90%;
+    background: #1f2833;
+    padding: 40px;
+    border-radius: 12px;
+    border: 2px solid #ffbd69;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    text-align: center;
+}
+
+.tutorial-steps {
+    text-align: left;
+    background: #121821;
+    padding: 20px;
+    border-radius: 6px;
+    margin: 25px 0;
+    border-left: 4px solid #ffbd69;
+}
+
+.battle-arena {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0;
+    gap: 20px;
+}
+
+.fighter-card {
+    background: #121821;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #4e5e66;
+    width: 46%;
+    text-align: center;
+}
+
+.fighter-art {
+    font-size: 75px;
+    margin: 15px 0;
+    height: 95px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hp-bar-container {
+    background: #222;
+    border-radius: 4px;
+    height: 16px;
+    width: 100%;
+    margin-top: 8px;
+    overflow: hidden;
+    border: 1px solid #444;
+}
+
+.hp-bar {
+    background: linear-gradient(90deg, #00ff87 0%, #60efff 100%);
+    height: 100%;
+    width: 100%;
+    transition: width 0.25s ease-out;
+}
+
+.battle-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.btn-battle {
+    background: #0b0c10;
+    color: #66fcf1;
+    border: 1px solid #66fcf1;
+    padding: 12px 28px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.btn-battle:hover {
+    background: #66fcf1;
+    color: #0b0c10;
+    box-shadow: 0 0 10px #66fcf1;
+}
+
+.battle-log {
+    background: #000;
+    color: #39ff14;
+    font-family: 'Consolas', 'Courier New', monospace;
+    padding: 15px;
+    border-radius: 4px;
+    height: 140px;
+    overflow-y: auto;
+    text-align: left;
+    font-size: 13px;
+    margin-top: 20px;
+    border: 1px solid #222;
+    line-height: 1.6;
+}
