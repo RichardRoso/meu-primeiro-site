@@ -2,10 +2,169 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>O Meu Site no GitHub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criador de Personagem RPG</title>
+    <style>
+        /* Estilização básica com tema de jogo escuro */
+        body {
+            background-color: #1a1a2e;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #e94560;
+            text-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .game-container {
+            display: flex;
+            background: #161624;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 2px solid #e94560;
+            gap: 40px;
+            max-width: 700px;
+            width: 90%;
+        }
+
+        /* Área onde o personagem aparece */
+        .avatar-preview {
+            width: 250px;
+            height: 250px;
+            background: #0f0f1a;
+            border-radius: 10px;
+            border: 2px dashed #4b526d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px; /* Usamos emojis gigantes como partes do corpo */
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        /* Painel de customização */
+        .controls {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+            flex-grow: 1;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #8f94fb;
+        }
+
+        select {
+            background: #22223b;
+            color: white;
+            border: 1px solid #4b526d;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        select:hover, select:focus {
+            border-color: #e94560;
+        }
+
+        .btn-ready {
+            background: #e94560;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            text-transform: uppercase;
+            transition: 0.2s;
+        }
+
+        .btn-ready:hover {
+            background: #ff5e7e;
+            transform: scale(1.02);
+        }
+    </style>
 </head>
 <body>
-    <h1>Olá, Mundo! 🚀</h1>
-    <p>Este é o meu primeiro site alojado no GitHub Pages.</p>
+
+    <h1>Crie o seu Herói ⚔️</h1>
+
+    <div class="game-container">
+        <!-- Visualização do Personagem (Usando Emojis) -->
+        <div class="avatar-preview" id="avatar">
+            🧙‍♂️
+        </div>
+
+        <!-- Opções de Seleção -->
+        <div class="controls">
+            <div class="control-group">
+                <label for="classe">Classe</label>
+                <select id="classe" onchange="atualizarPersonagem()">
+                    <option value="🧙‍♂️">Mago 🔮</option>
+                    <option value="🥷">Ninja 🗡️</option>
+                    <option value="🧑‍🚀">Astronauta 🚀</option>
+                    <option value="🤖">Ciborgue ⚙️</option>
+                    <option value="🧛">Vampiro 🩸</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="fundo">Cor da Aura (Fundo)</label>
+                <select id="fundo" onchange="atualizarPersonagem()">
+                    <option value="#0f0f1a">Padrão Escuro</option>
+                    <option value="radial-gradient(circle, #e94560 0%, #0f0f1a 100%)">Aura Vermelha</option>
+                    <option value="radial-gradient(circle, #4e65ff 0%, #0f0f1a 100%)">Aura Azul</option>
+                    <option value="radial-gradient(circle, #00b4db 0%, #0f0f1a 100%)">Aura Ciano</option>
+                </select>
+            </div>
+
+            <button class="btn-ready" onclick="finalizarCriacao()">Pronto para a Batalha!</button>
+        </div>
+    </div>
+
+    <!-- Lógica em JavaScript -->
+    <script>
+        function atualizarPersonagem() {
+            // Pega os elementos do HTML
+            const classeSelecionada = document.getElementById('classe').value;
+            const fundoSelecionado = document.getElementById('fundo').value;
+            const avatar = document.getElementById('avatar');
+
+            // Aplica as mudanças visualmente em tempo real
+            avatar.innerText = classeSelecionada;
+            avatar.style.background = fundoSelecionado;
+        }
+
+        function finalizarCriacao() {
+            const classeTexto = document.getElementById('classe').options[document.getElementById('classe').selectedIndex].text;
+            alert(`Seu personagem da classe [${classeTexto}] foi criado com sucesso! Boa sorte na sua jornada!`);
+        }
+    </script>
+
 </body>
 </html>
