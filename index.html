@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RPG: O Despertar do Herói</title>
+    <title>RPG: O Despertar do Herói PRO</title>
     <style>
-        /* Estilização base do tema escuro de jogo */
+        /* Estilização Avançada de Interface Gamer */
         body {
-            background-color: #1a1a2e;
-            color: #fff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0b0c10;
+            color: #c5c6c7;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -20,46 +20,63 @@
         }
 
         h1, h2 {
-            color: #e94560;
-            text-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
+            color: #66fcf1;
+            text-shadow: 0 0 15px rgba(102, 252, 241, 0.4);
             margin-bottom: 20px;
             text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        /* Containers Principais */
         .game-container {
             display: flex;
-            background: #161624;
+            background: #1f2833;
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 2px solid #e94560;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+            border: 2px solid #45f3ff;
             gap: 40px;
-            max-width: 800px;
+            max-width: 850px;
             width: 90%;
+            position: relative;
         }
 
         .hidden {
             display: none !important;
         }
 
-        /* Preview Visual */
+        /* Moldura Animada do Personagem */
         .avatar-preview {
-            width: 250px;
-            height: 250px;
-            background: #0f0f1a;
-            border-radius: 10px;
-            border: 2px dashed #4b526d;
+            width: 260px;
+            height: 260px;
+            background: #121821;
+            border-radius: 8px;
+            border: 2px solid #4e5e66;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 100px;
+            font-size: 110px;
             position: relative;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
-            transition: background 0.3s ease;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.9);
+            transition: all 0.2s ease;
         }
 
-        /* Painéis e Formulários */
+        /* Efeito de Dano Piscando em Vermelho */
+        .take-damage {
+            animation: shakeDamage 0.4s ease-in-out;
+            background: #5c1d1d !important;
+            border-color: #ff4a4a !important;
+        }
+
+        @keyframes shakeDamage {
+            0% { transform: translateX(0); }
+            20% { transform: translateX(-8px); }
+            40% { transform: translateX(6px); }
+            60% { transform: translateX(-6px); }
+            80% { transform: translateX(4px); }
+            100% { transform: translateX(0); }
+        }
+
         .panel {
             display: flex;
             flex-direction: column;
@@ -78,35 +95,34 @@
             text-transform: uppercase;
             font-size: 11px;
             letter-spacing: 1px;
-            color: #8f94fb;
+            color: #66fcf1;
         }
 
         select, input[type="text"] {
-            background: #22223b;
-            color: white;
-            border: 1px solid #4b526d;
-            padding: 10px;
-            border-radius: 5px;
+            background: #0b0c10;
+            color: #fff;
+            border: 1px solid #45f3ff;
+            padding: 12px;
+            border-radius: 4px;
             font-size: 15px;
             outline: none;
             transition: 0.3s;
         }
 
-        select:hover, select:focus, input:focus {
-            border-color: #e94560;
+        select:focus, input:focus {
+            box-shadow: 0 0 10px rgba(102, 252, 241, 0.5);
         }
 
-        /* Atributos e Distribuição de Pontos */
         .status-container {
-            background: #0f0f1a;
+            background: #121821;
             padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #22223b;
+            border-radius: 6px;
+            border: 1px solid #45f3ff;
         }
 
         .status-title {
             font-size: 12px;
-            color: #ffde7d;
+            color: #ffbd69;
             margin-bottom: 10px;
             text-transform: uppercase;
             font-weight: bold;
@@ -124,66 +140,69 @@
 
         .status-val {
             font-weight: bold;
-            color: #00b4db;
+            color: #66fcf1;
         }
 
+        /* Botões Gamer Turbinados */
         .point-controls button {
-            background: #4e65ff;
-            color: white;
-            border: none;
-            padding: 2px 10px;
+            background: #1f2833;
+            color: #66fcf1;
+            border: 1px solid #66fcf1;
+            padding: 6px 14px;
             font-weight: bold;
             cursor: pointer;
-            border-radius: 3px;
-            margin-left: 5px;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: 0.2s;
         }
 
         .point-controls button:hover {
-            background: #e94560;
+            background: #66fcf1;
+            color: #0b0c10;
+            box-shadow: 0 0 8px #66fcf1;
         }
 
-        /* Botões Gerais */
         .btn-action {
-            background: #e94560;
-            color: white;
-            border: none;
+            background: #1f2833;
+            color: #45f3ff;
+            border: 2px solid #45f3ff;
             padding: 15px;
             font-size: 16px;
             font-weight: bold;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
             text-transform: uppercase;
             transition: 0.2s;
-            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+            letter-spacing: 1px;
         }
 
         .btn-action:hover {
-            background: #ff5e7e;
-            transform: scale(1.02);
+            background: #45f3ff;
+            color: #0b0c10;
+            box-shadow: 0 0 15px rgba(69, 243, 255, 0.6);
         }
 
-        /* Interface do Tutorial */
         .box-interface {
-            max-width: 600px;
+            max-width: 650px;
             width: 90%;
-            background: #161624;
+            background: #1f2833;
             padding: 40px;
-            border-radius: 15px;
-            border: 2px solid #ffde7d;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 12px;
+            border: 2px solid #ffbd69;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
             text-align: center;
         }
 
         .tutorial-steps {
             text-align: left;
-            background: #0f0f1a;
+            background: #121821;
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 6px;
             margin: 25px 0;
-            border-left: 4px solid #ffde7d;
+            border-left: 4px solid #ffbd69;
         }
 
-        /* Campo de Batalha */
+        /* Interface Da Arena Espacial */
         .battle-arena {
             display: flex;
             justify-content: space-around;
@@ -193,138 +212,126 @@
         }
 
         .fighter-card {
-            background: #0f0f1a;
+            background: #121821;
             padding: 20px;
-            border-radius: 10px;
-            border: 1px solid #4b526d;
-            width: 45%;
+            border-radius: 8px;
+            border: 1px solid #4e5e66;
+            width: 46%;
             text-align: center;
+            position: relative;
         }
 
         .fighter-art {
-            font-size: 70px;
+            font-size: 75px;
             margin: 15px 0;
-            height: 90px;
+            height: 95px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .hp-bar-container {
-            background: #333;
-            border-radius: 5px;
-            height: 15px;
+            background: #222;
+            border-radius: 4px;
+            height: 16px;
             width: 100%;
-            margin-top: 5px;
+            margin-top: 8px;
             overflow: hidden;
+            border: 1px solid #444;
         }
 
         .hp-bar {
-            background: #00ff77;
+            background: linear-gradient(90deg, #00ff87 0%, #60efff 100%);
             height: 100%;
             width: 100%;
-            transition: width 0.3s ease;
+            transition: width 0.25s ease-out;
         }
 
         .battle-actions {
             display: flex;
-            gap: 10px;
+            gap: 15px;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .btn-battle {
-            background: #34495e;
-            color: white;
-            border: none;
-            padding: 10px 20px;
+            background: #0b0c10;
+            color: #66fcf1;
+            border: 1px solid #66fcf1;
+            padding: 12px 28px;
             font-weight: bold;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: 0.2s;
         }
 
         .btn-battle:hover {
-            background: #e94560;
+            background: #66fcf1;
+            color: #0b0c10;
+            box-shadow: 0 0 10px #66fcf1;
         }
 
+        /* Terminal Hacker Log de Combate */
         .battle-log {
             background: #000;
-            color: #00ff00;
-            font-family: 'Courier New', Courier, monospace;
+            color: #39ff14;
+            font-family: 'Consolas', 'Courier New', monospace;
             padding: 15px;
-            border-radius: 5px;
-            height: 120px;
+            border-radius: 4px;
+            height: 140px;
             overflow-y: auto;
             text-align: left;
             font-size: 13px;
             margin-top: 20px;
-            border: 1px solid #333;
+            border: 1px solid #222;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
 
-    <!-- 1️⃣ TELA: CRIADOR DE PERSONAGEM -->
+    <!-- 1️⃣ INTERFACE: CUSTOMIZAÇÃO DO PERSONAGEM -->
     <div id="screen-creator" style="display: flex; flex-direction: column; align-items: center;">
-        <h1>Crie o seu Herói ⚔️</h1>
+        <h1>Criação de Herói ⚔️</h1>
         <div class="game-container">
             <div class="avatar-preview" id="avatar">🧙‍♂️</div>
 
             <div class="panel">
                 <div class="control-group">
-                    <label for="nome">Nome do Herói</label>
-                    <input type="text" id="nome" placeholder="Digite o nome..." value="Guerreiro Lendário">
+                    <label>Nome do Personagem</label>
+                    <input type="text" id="nome-heroi-input" value="Guerreiro Cyber">
                 </div>
 
                 <div class="control-group">
-                    <label for="classe">Classe (Status Iniciais)</label>
-                    <select id="classe" onchange="resetarEDefinirClasse()">
-                        <option value="🧙‍♂️">Mago 🔮 (Foco em Ataque)</option>
-                        <option value="🥷">Ninja 🗡️ (Foco em Agilidade)</option>
-                        <option value="🤖">Ciborgue ⚙️ (Foco em Vida)</option>
+                    <label>Classe Cibernética</label>
+                    <select id="classe-select">
+                        <option value="mago">Mago Celestial 🔮 (+ ATK Mágico)</option>
+                        <option value="ninja">Ninja das Sombras 🗡️ (+ Velocidade Crítica)</option>
+                        <option value="ciborgue">Ciborgue Titã ⚙️ (+ Blindagem de HP)</option>
                     </select>
                 </div>
 
                 <div class="control-group">
-                    <label for="fundo">Aura Passiva</label>
-                    <select id="fundo" onchange="atualizarVisualEAura()">
-                        <option value="#0f0f1a">Nenhuma (Padrão)</option>
-                        <option value="radial-gradient(circle, #e94560 0%, #0f0f1a 100%)">Aura de Fogo 🔥 (+5 Ataque)</option>
-                        <option value="radial-gradient(circle, #4e65ff 0%, #0f0f1a 100%)">Aura de Raio ⚡ (+5 Agilidade)</option>
+                    <label>Aura de Energia Activa</label>
+                    <select id="fundo-select">
+                        <option value="nenhuma">Sem Aura (Padrão)</option>
+                        <option value="fogo">Núcleo de Fogo 🔥 (+5 Ataque Fixo)</option>
+                        <option value="raio">Sobrecarga Elétrica ⚡ (+5 Agilidade Fixa)</option>
                     </select>
                 </div>
 
-                <!-- Atributos Dinâmicos e Distribuição -->
                 <div class="status-container">
                     <div class="status-title">
-                        <span>Atributos Base</span>
-                        <span style="color: #ff5e7e;" id="pontos-disponiveis">Pontos Restantes: 10</span>
+                        <span>Painel de Upgrades</span>
+                        <span style="color: #ffbd69; font-size: 13px;" id="pontos-txt">Pontos Restantes: 10</span>
                     </div>
                     
                     <div class="status-row">
-                        <span>Vida Max (HP): <span class="status-val" id="base-hp">0</span></span>
+                        <span>Pontos de Vida (HP): <span class="status-val" id="base-hp-txt">0</span></span>
                         <div class="point-controls">
-                            <button onclick="ajustarPonto('hp', 1)">+</button>
+                            <button id="btn-add-hp">UP +10</button>
                         </div>
                     </div>
                     
-                    <div class="status-row">
-                        <span>Ataque (ATK): <span class="status-val" id="base-atk">0</span></span>
-                        <div class="point-controls">
-                            <button onclick="ajustarPonto('atk', 1)">+</button>
-                        </div>
-                    </div>
-
-                    <div class="status-row">
-                        <span>Agilidade (SPD): <span class="status-val" id="base-spd">0</span></span>
-                        <div class="point-controls">
-                            <button onclick="ajustarPonto('spd', 1)">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="btn-action" onclick="irParaTutorial()">Iniciar Jornada 🚀</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 2️⃣ TELA: INTERFACE DE TUTORIAL -->
-    <div id="screen-tutorial" class="box-interface hidden">
-        <h1 style="color: #ffde7d;">Fase 0: O Aprendizado</h1>
