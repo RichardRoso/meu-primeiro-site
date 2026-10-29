@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criador de Personagem RPG</title>
+    <title>RPG: O Despertar do Herói</title>
     <style>
-        /* Estilização básica com tema de jogo escuro */
+        /* Estilização base do tema escuro de jogo */
         body {
             background-color: #1a1a2e;
             color: #fff;
@@ -16,14 +16,17 @@
             justify-content: center;
             min-height: 100vh;
             margin: 0;
+            overflow-x: hidden;
         }
 
-        h1 {
+        h1, h2 {
             color: #e94560;
             text-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
             margin-bottom: 20px;
+            text-align: center;
         }
 
+        /* Containers Principais */
         .game-container {
             display: flex;
             background: #161624;
@@ -32,11 +35,15 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border: 2px solid #e94560;
             gap: 40px;
-            max-width: 700px;
+            max-width: 800px;
             width: 90%;
         }
 
-        /* Área onde o personagem aparece */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Preview Visual */
         .avatar-preview {
             width: 250px;
             height: 250px;
@@ -46,125 +53,278 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 80px; /* Usamos emojis gigantes como partes do corpo */
+            font-size: 100px;
             position: relative;
             box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+            transition: background 0.3s ease;
         }
 
-        /* Painel de customização */
-        .controls {
+        /* Painéis e Formulários */
+        .panel {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            gap: 20px;
+            gap: 15px;
             flex-grow: 1;
         }
 
         .control-group {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
         }
 
         label {
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 12px;
+            font-size: 11px;
             letter-spacing: 1px;
             color: #8f94fb;
         }
 
-        select {
+        select, input[type="text"] {
             background: #22223b;
             color: white;
             border: 1px solid #4b526d;
             padding: 10px;
             border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
+            font-size: 15px;
             outline: none;
             transition: 0.3s;
         }
 
-        select:hover, select:focus {
+        select:hover, select:focus, input:focus {
             border-color: #e94560;
         }
 
-        .btn-ready {
+        /* Atributos e Distribuição de Pontos */
+        .status-container {
+            background: #0f0f1a;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #22223b;
+        }
+
+        .status-title {
+            font-size: 12px;
+            color: #ffde7d;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .status-val {
+            font-weight: bold;
+            color: #00b4db;
+        }
+
+        .point-controls button {
+            background: #4e65ff;
+            color: white;
+            border: none;
+            padding: 2px 10px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 3px;
+            margin-left: 5px;
+        }
+
+        .point-controls button:hover {
+            background: #e94560;
+        }
+
+        /* Botões Gerais */
+        .btn-action {
             background: #e94560;
             color: white;
             border: none;
-            padding: 12px;
+            padding: 15px;
             font-size: 16px;
             font-weight: bold;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 10px;
             text-transform: uppercase;
             transition: 0.2s;
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
         }
 
-        .btn-ready:hover {
+        .btn-action:hover {
             background: #ff5e7e;
             transform: scale(1.02);
+        }
+
+        /* Interface do Tutorial */
+        .box-interface {
+            max-width: 600px;
+            width: 90%;
+            background: #161624;
+            padding: 40px;
+            border-radius: 15px;
+            border: 2px solid #ffde7d;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .tutorial-steps {
+            text-align: left;
+            background: #0f0f1a;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border-left: 4px solid #ffde7d;
+        }
+
+        /* Campo de Batalha */
+        .battle-arena {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 20px 0;
+            gap: 20px;
+        }
+
+        .fighter-card {
+            background: #0f0f1a;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #4b526d;
+            width: 40%;
+            text-align: center;
+        }
+
+        .fighter-art {
+            font-size: 70px;
+            margin: 15px 0;
+            height: 90px;
+        }
+
+        .hp-bar-container {
+            background: #333;
+            border-radius: 5px;
+            height: 15px;
+            width: 100%;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .hp-bar {
+            background: #00ff77;
+            height: 100%;
+            width: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .battle-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn-battle {
+            background: #34495e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-battle:hover {
+            background: #e94560;
+        }
+
+        .battle-log {
+            background: #000;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 15px;
+            border-radius: 5px;
+            height: 120px;
+            overflow-y: auto;
+            text-align: left;
+            font-size: 13px;
+            margin-top: 20px;
+            border: 1px solid #333;
         }
     </style>
 </head>
 <body>
 
-    <h1>Crie o seu Herói ⚔️</h1>
+    <!-- 1️⃣ TELA: CRIADOR DE PERSONAGEM -->
+    <div id="screen-creator" style="display: flex; flex-direction: column; align-items: center;">
+        <h1>Crie o seu Herói ⚔️</h1>
+        <div class="game-container">
+            <div class="avatar-preview" id="avatar">🧙‍♂️</div>
 
-    <div class="game-container">
-        <!-- Visualização do Personagem (Usando Emojis) -->
-        <div class="avatar-preview" id="avatar">
-            🧙‍♂️
-        </div>
+            <div class="panel">
+                <div class="control-group">
+                    <label for="nome">Nome do Herói</label>
+                    <input type="text" id="nome" placeholder="Digite o nome..." value="Guerreiro Lendário">
+                </div>
 
-        <!-- Opções de Seleção -->
-        <div class="controls">
-            <div class="control-group">
-                <label for="classe">Classe</label>
-                <select id="classe" onchange="atualizarPersonagem()">
-                    <option value="🧙‍♂️">Mago 🔮</option>
-                    <option value="🥷">Ninja 🗡️</option>
-                    <option value="🧑‍🚀">Astronauta 🚀</option>
-                    <option value="🤖">Ciborgue ⚙️</option>
-                    <option value="🧛">Vampiro 🩸</option>
-                </select>
+                <div class="control-group">
+                    <label for="classe">Classe (Status Iniciais)</label>
+                    <select id="classe" onchange="resetarEDefinirClasse()">
+                        <option value="🧙‍♂️">Mago 🔮 (Foco em Ataque)</option>
+                        <option value="🥷">Ninja 🗡️ (Foco em Agilidade)</option>
+                        <option value="🤖">Ciborgue ⚙️ (Foco em Vida)</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="fundo">Aura Passiva</label>
+                    <select id="fundo" onchange="atualizarVisualEAura()">
+                        <option value="#0f0f1a">Nenhuma (Padrão)</option>
+                        <option value="radial-gradient(circle, #e94560 0%, #0f0f1a 100%)">Aura de Fogo 🔥 (+5 Ataque)</option>
+                        <option value="radial-gradient(circle, #4e65ff 0%, #0f0f1a 100%)">Aura de Raio ⚡ (+5 Agilidade)</option>
+                    </select>
+                </div>
+
+                <!-- Atributos Dinâmicos e Distribuição -->
+                <div class="status-container">
+                    <div class="status-title">
+                        <span>Atributos Base</span>
+                        <span style="color: #ff5e7e;" id="pontos-disponiveis">Pontos Restantes: 10</span>
+                    </div>
+                    
+                    <div class="status-row">
+                        <span>Vida Max (HP): <span class="status-val" id="base-hp">0</span></span>
+                        <div class="point-controls">
+                            <button onclick="ajustarPonto('hp', 1)">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="status-row">
+                        <span>Ataque (ATK): <span class="status-val" id="base-atk">0</span></span>
+                        <div class="point-controls">
+                            <button onclick="ajustarPonto('atk', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="status-row">
+                        <span>Agilidade (SPD): <span class="status-val" id="base-spd">0</span></span>
+                        <div class="point-controls">
+                            <button onclick="ajustarPonto('spd', 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-action" onclick="irParaTutorial()">Iniciar Jornada 🚀</button>
             </div>
-
-            <div class="control-group">
-                <label for="fundo">Cor da Aura (Fundo)</label>
-                <select id="fundo" onchange="atualizarPersonagem()">
-                    <option value="#0f0f1a">Padrão Escuro</option>
-                    <option value="radial-gradient(circle, #e94560 0%, #0f0f1a 100%)">Aura Vermelha</option>
-                    <option value="radial-gradient(circle, #4e65ff 0%, #0f0f1a 100%)">Aura Azul</option>
-                    <option value="radial-gradient(circle, #00b4db 0%, #0f0f1a 100%)">Aura Ciano</option>
-                </select>
-            </div>
-
-            <button class="btn-ready" onclick="finalizarCriacao()">Pronto para a Batalha!</button>
         </div>
     </div>
 
-    <!-- Lógica em JavaScript -->
-    <script>
-        function atualizarPersonagem() {
-            // Pega os elementos do HTML
-            const classeSelecionada = document.getElementById('classe').value;
-            const fundoSelecionado = document.getElementById('fundo').value;
-            const avatar = document.getElementById('avatar');
-
-            // Aplica as mudanças visualmente em tempo real
-            avatar.innerText = classeSelecionada;
-            avatar.style.background = fundoSelecionado;
-        }
-
-        function finalizarCriacao() {
-            const classeTexto = document.getElementById('classe').options[document.getElementById('classe').selectedIndex].text;
-            alert(`Seu personagem da classe [${classeTexto}] foi criado com sucesso! Boa sorte na sua jornada!`);
-        }
-    </script>
-
-</body>
-</html>
+    <!-- 2️⃣ TELA: INTERFACE DE TUTORIAL -->
+    <div id="screen-tutorial" class="box-interface hidden">
+        <h1 style="color: #ffde7d;">Fase 0: O Aprendizado</h1>
