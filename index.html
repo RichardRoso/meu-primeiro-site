@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RPG: O Despertar do Herói PRO</title>
     <style>
-        /* Estilização Avançada de Interface Gamer */
         body {
             background-color: #0b0c10;
             color: #c5c6c7;
@@ -38,14 +37,12 @@
             gap: 40px;
             max-width: 850px;
             width: 90%;
-            position: relative;
         }
 
         .hidden {
             display: none !important;
         }
 
-        /* Moldura Animada do Personagem */
         .avatar-preview {
             width: 260px;
             height: 260px;
@@ -58,10 +55,8 @@
             font-size: 110px;
             position: relative;
             box-shadow: inset 0 0 30px rgba(0,0,0,0.9);
-            transition: all 0.2s ease;
         }
 
-        /* Efeito de Dano Piscando em Vermelho */
         .take-damage {
             animation: shakeDamage 0.4s ease-in-out;
             background: #5c1d1d !important;
@@ -106,11 +101,6 @@
             border-radius: 4px;
             font-size: 15px;
             outline: none;
-            transition: 0.3s;
-        }
-
-        select:focus, input:focus {
-            box-shadow: 0 0 10px rgba(102, 252, 241, 0.5);
         }
 
         .status-container {
@@ -143,7 +133,6 @@
             color: #66fcf1;
         }
 
-        /* Botões Gamer Turbinados */
         .point-controls button {
             background: #1f2833;
             color: #66fcf1;
@@ -172,7 +161,6 @@
             border-radius: 4px;
             cursor: pointer;
             text-transform: uppercase;
-            transition: 0.2s;
             letter-spacing: 1px;
         }
 
@@ -202,7 +190,6 @@
             border-left: 4px solid #ffbd69;
         }
 
-        /* Interface Da Arena Espacial */
         .battle-arena {
             display: flex;
             justify-content: space-around;
@@ -218,7 +205,6 @@
             border: 1px solid #4e5e66;
             width: 46%;
             text-align: center;
-            position: relative;
         }
 
         .fighter-art {
@@ -264,7 +250,6 @@
             cursor: pointer;
             text-transform: uppercase;
             font-size: 14px;
-            transition: 0.2s;
         }
 
         .btn-battle:hover {
@@ -273,7 +258,6 @@
             box-shadow: 0 0 10px #66fcf1;
         }
 
-        /* Terminal Hacker Log de Combate */
         .battle-log {
             background: #000;
             color: #39ff14;
@@ -292,7 +276,7 @@
 </head>
 <body>
 
-    <!-- 1️⃣ INTERFACE: CUSTOMIZAÇÃO DO PERSONAGEM -->
+    <!-- 1️⃣ INTERFACE: CUSTOMIZAÇÃO DO PERSONA -->
     <div id="screen-creator" style="display: flex; flex-direction: column; align-items: center;">
         <h1>Criação de Herói ⚔️</h1>
         <div class="game-container">
@@ -307,9 +291,9 @@
                 <div class="control-group">
                     <label>Classe Cibernética</label>
                     <select id="classe-select">
-                        <option value="mago">Mago Celestial 🔮 (+ ATK Mágico)</option>
-                        <option value="ninja">Ninja das Sombras 🗡️ (+ Velocidade Crítica)</option>
-                        <option value="ciborgue">Ciborgue Titã ⚙️ (+ Blindagem de HP)</option>
+                        <option value="mago">Mago Celestial 🔮</option>
+                        <option value="ninja">Ninja das Sombras 🗡️</option>
+                        <option value="ciborgue">Ciborgue Titã ⚙️</option>
                     </select>
                 </div>
 
@@ -317,8 +301,8 @@
                     <label>Aura de Energia Activa</label>
                     <select id="fundo-select">
                         <option value="nenhuma">Sem Aura (Padrão)</option>
-                        <option value="fogo">Núcleo de Fogo 🔥 (+5 Ataque Fixo)</option>
-                        <option value="raio">Sobrecarga Elétrica ⚡ (+5 Agilidade Fixa)</option>
+                        <option value="fogo">Núcleo de Fogo 🔥</option>
+                        <option value="raio">Sobrecarga Elétrica ⚡</option>
                     </select>
                 </div>
 
@@ -329,9 +313,22 @@
                     </div>
                     
                     <div class="status-row">
-                        <span>Pontos de Vida (HP): <span class="status-val" id="base-hp-txt">0</span></span>
+                        <span>Vida Max (HP): <span class="status-val" id="base-hp-txt">0</span></span>
                         <div class="point-controls">
                             <button id="btn-add-hp">UP +10</button>
                         </div>
                     </div>
                     
+                    <div class="status-row">
+                        <span>Poder Ofensivo (ATK): <span class="status-val" id="base-atk-txt">0</span></span>
+                        <div class="point-controls">
+                            <button id="btn-add-atk">UP +1</button>
+                        </div>
+                    </div>
+
+                    <div class="status-row">
+                        <span>Velocidade de Ação (SPD): <span class="status-val" id="base-spd-txt">0</span></span>
+                        <div class="point-controls">
+                            <button id="btn-add-spd">UP +1</button>
+                        </div>
+                    </div>
